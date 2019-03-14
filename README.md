@@ -4,7 +4,7 @@ Energy baseline need based on Cooling/Heating Degree days and building heat tran
 Generated plots:
 
 Real time consumption compated with forecasted baseline:
-![](https://github.com/sonata-nfv/tng-profiler/blob/master/images/tng_profiler.png)
+![](https://github.com/EntropyEcosystem/DegreeDays/blob/master/images/plot1.png)
 
 Heating of Cooling degree days plot:
-![](https://github.com/sonata-nfv/tng-profiler/blob/master/images/tng_profiler.png)
+![](https://github.com/EntropyEcosystem/DegreeDays/blob/master/images/plot0.png)
