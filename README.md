@@ -1,15 +1,10 @@
 # DegreeDays
 Energy baseline need based on Cooling/Heating Degree days and building heat transfer coefficient 
 
-Package: DegreeDays
-Type: Package
-Title: Generator of Cooling Degree Days plot
-Version: 2.10.0
-Author: Anastasios Zafeiropoulos
-Maintainer: The package maintainer <anastasios.zaf@gmail.com>
-Description: This packages estimates the Cooling and Heating Degree days per building space based on the average hourly
-    indoor and outdoor temperature.
-License: MIT
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 6.0.1
+Generated plots:
+
+Real time consumption compated with forecasted baseline:
+![](https://github.com/sonata-nfv/tng-profiler/blob/master/images/tng_profiler.png)
+
+Heating of Cooling degree days plot:
+![](https://github.com/sonata-nfv/tng-profiler/blob/master/images/tng_profiler.png)
