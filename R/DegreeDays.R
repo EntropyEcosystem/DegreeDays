@@ -112,14 +112,14 @@ coolingDegreeDaysPlot <- function(datastream,base_temp,surface,area_url,area_nam
     temp_diff <- base_temp - row$tempin
     if ((out_diff > 0) & (in_diff < 0))
     {
-      if( myhour>20 || lubridate::wday(mydatetime)==1 || lubridate::wday(mydatetime)==7)
+      if( myhour>20 || myhour<8 || lubridate::wday(mydatetime)==1 || lubridate::wday(mydatetime)==7)
        { row$cdd <- 0}
       else{row$cdd <- as.numeric((row$tempout - base_temp) / 24)}
       energy_waste_indicative <- temp_diff* htc #measured in kwatt
     }
     else if ((out_diff > 0) & (in_diff > 0))
     {
-      if( myhour>20 || lubridate::wday(mydatetime)==1 || lubridate::wday(mydatetime)==7)
+      if( myhour>20 || myhour<8 || lubridate::wday(mydatetime)==1 || lubridate::wday(mydatetime)==7)
         {row$cdd <-0}
       else{row$cdd <- as.numeric((row$tempout - base_temp) / 24)}
       energy_waste_indicative <- 0
@@ -160,7 +160,7 @@ coolingDegreeDaysPlot <- function(datastream,base_temp,surface,area_url,area_nam
   plot33 <- ggplot2::qplot(x=xy$time, y=xy$power,
                            data=xy, na.rm=TRUE,
                            size=I(0.6),
-                           main="Real Power vs Baseline (degree days)",
+                           main="Real Power vs Forecasted (degree days)",
                            xlab="Date", ylab="Power (Watt)")+
     ggplot2::geom_line(ggplot2::aes(y = xy$power, colour = "Real Power")) +
     ggplot2::geom_line(ggplot2::aes(y = xy$baseline*1000, colour = "Baseline")) +
@@ -170,7 +170,7 @@ coolingDegreeDaysPlot <- function(datastream,base_temp,surface,area_url,area_nam
     ggplot2::scale_x_datetime(date_breaks = "12 hour") +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle =20, hjust = 1)) +
     ggplot2::theme(legend.position="bottom", legend.box = "horizontal") +
-    ggplot2::scale_color_manual(name="",values = c("Real Power"="#00ba38", "Baseline"="#87CEFA")) + ggplot2::expand_limits(y=0)
+    ggplot2::scale_color_manual(name="",values = c("Real Power"="#00ba38", "Forecasted"="#87CEFA")) + ggplot2::expand_limits(y=0)
 
   # plot(plot33)
 
@@ -323,14 +323,14 @@ coolingDegreeDaysPlot <- function(datastream,base_temp,surface,area_url,area_nam
 
       if ((out_diff < 0) & (in_diff > 0)) {
 
-        if( myhour>20 || lubridate::wday(mydatetime)==1 || lubridate::wday(mydatetime)==7)
+        if( myhour>20 || myhour<8 || lubridate::wday(mydatetime)==1 || lubridate::wday(mydatetime)==7)
           { row$hdd <- 0}
         else{row$hdd <- as.numeric((base_temp - row$tempout)/24)}
 
         energy_waste_indicative <- temp_diff * htc
       }
       else if ((out_diff < 0) & (in_diff < 0)) {
-        if(myhour>20 || lubridate::wday(mydatetime) == 1 || lubridate::wday(mydatetime) == 7){ row$hdd <- 0}
+        if(myhour>20 || myhour<8 || lubridate::wday(mydatetime) == 1 || lubridate::wday(mydatetime) == 7){ row$hdd <- 0}
         else{row$hdd <- as.numeric((base_temp - row$tempout)/24)}
         energy_waste_indicative <- 0
       }
@@ -372,10 +372,10 @@ coolingDegreeDaysPlot <- function(datastream,base_temp,surface,area_url,area_nam
     plot33 <- ggplot2::qplot(x=xy$time, y=xy$power,
                              data=xy, na.rm=TRUE,
                              size=I(0.6),
-                             main="Real Power vs Baseline (degree days)",
+                             main="Real Power vs Forecasted (degree days)",
                              xlab="Date", ylab="Power (Watt)")+
       ggplot2::geom_line(ggplot2::aes(y = xy$power, colour = "Real Power")) +
-      ggplot2::geom_line(ggplot2::aes(y = xy$baseline*1000, colour = "Baseline")) +
+      ggplot2::geom_line(ggplot2::aes(y = xy$baseline*1000, colour = "Forecasted")) +
       ggplot2::geom_point(y = xy$baseline*1000, na.rm=TRUE, color="blue", size=1, pch=16) +
       #ggplot2::geom_line(ggplot2::aes(y = xy$energy_waste*1000, colour = "Energy Waste")) +
       #ggplot2::geom_point(y = xy$energy_waste*1000, na.rm=TRUE, color="gray", size=2, pch=16) +
@@ -383,7 +383,7 @@ coolingDegreeDaysPlot <- function(datastream,base_temp,surface,area_url,area_nam
       ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 20, hjust = 1)) +
       ggplot2::theme(legend.position="bottom", legend.box = "horizontal") +
       ggplot2::scale_color_manual(name="",
-                                  values = c("Real Power"="#00ba38", "Baseline"="#87CEFA")) + ggplot2::expand_limits(y=0)
+                                  values = c("Real Power"="#00ba38", "Forecasted"="#87CEFA")) + ggplot2::expand_limits(y=0)
 
     plot(plot33)
 

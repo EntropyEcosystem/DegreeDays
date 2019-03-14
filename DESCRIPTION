@@ -1,7 +1,7 @@
 Package: DegreeDays
 Type: Package
 Title: Generator of Cooling Degree Days plot
-Version: 2.9.0
+Version: 2.10.0
 Author: Anastasios Zafeiropoulos
 Maintainer: The package maintainer <anastasios.zaf@gmail.com>
 Description: This packages estimates the Cooling and Heating Degree days per building space based on the average hourly
